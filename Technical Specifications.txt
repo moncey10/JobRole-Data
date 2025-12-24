@@ -1,0 +1,52 @@
+**Technical Specification for Data Representation**
+
+1. **Data Representation Methods**:
+   - **Text Data**: Use embeddings (e.g., Word2Vec, GloVe, or BERT) to represent textual descriptions such as job roles and responsibilities.
+   - **Categorical Data**: Apply one-hot encoding for fields like `industries`, `department`, and `status`.
+   - **Numerical Data**: Normalize numerical fields such as `salary_range` and `experience` using Min-Max scaling or Z-score normalization.
+   - **Date Fields**: Convert date fields (e.g., `job_posting_date`, `application_deadline`) to numerical formats (e.g., days since epoch) for time-series analysis.
+   - **Primary Key**: Ensure `id` is treated as a unique identifier for each record.
+
+2. **Data Cleaning**:
+   - Remove rows with missing or invalid `id` values.
+   - Standardize inconsistent text formats (e.g., capitalization, whitespace).
+
+3. **Output Format**:
+   - Deliver data in `.csv` or `.parquet` format for compatibility with ML pipelines.
+
+**Data Governance Constraints**
+
+1. **Primary Key Constraints**:
+   - `id` must be unique and non-null.
+   - Duplicate `id` values should trigger an error during data ingestion.
+
+2. **Data Validation Rules**:
+   - **Categorical Fields**:
+     - `industries`, `department`, `status`: Validate against a predefined list of acceptable values.
+   - **Numerical Fields**:
+     - `salary_range`: Ensure values are within a realistic range (e.g., 0–1,000,000).
+     - `experience`: Ensure values are non-negative.
+   - **Text Fields**:
+     - `jobrole`, `description`: Ensure no empty strings or invalid characters.
+   - **Date Fields**:
+     - `job_posting_date`, `application_deadline`: Ensure valid date formats (YYYY-MM-DD).
+
+**Project Directory Structure**
+
+```
+project-root/
+├── data/
+│   ├── raw/                # Raw dataset (e.g., s_user_jobrole.csv)
+│   ├── processed/          # Cleaned and preprocessed data
+├── models/
+│   ├── baseline/           # Baseline ML models
+│   ├── advanced/           # Advanced ML models (e.g., transformers)
+├── scripts/
+│   ├── data_preprocessing/ # Scripts for data cleaning and transformation
+│   ├── model_training/     # Scripts for training ML models
+├── notebooks/              # Jupyter notebooks for exploratory analysis
+├── config/
+│   ├── data_config.yaml    # Data validation and governance rules
+│   ├── model_config.yaml   # Model hyperparameters
+├── README.md               # Project documentation
+```
