@@ -50,3 +50,27 @@ project-root/
 │   ├── model_config.yaml   # Model hyperparameters
 ├── README.md               # Project documentation
 ```
+
+Research Baseline Algorithms
+
+Based on the analysis of industries and job roles in the dataset, the following ML algorithms are recommended:
+
+Logistic Regression:
+
+Use for binary classification tasks (e.g., predicting if a job role is "Active" or not).
+Simple and interpretable baseline.
+
+Random Forest:
+
+Use for multi-class classification tasks (e.g., predicting department or industries).
+Handles categorical and numerical data well.
+
+K-Means Clustering:
+
+Use for unsupervised clustering of job roles based on industries, department, and responsibilities.
+Helps identify patterns in job roles across industries.
+
+Transformer-based Models (e.g., BERT):
+
+Use for NLP tasks like analyzing job descriptions and extracting key skills.
+Suitable for embeddings of textual data.
