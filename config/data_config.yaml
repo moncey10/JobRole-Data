@@ -1,0 +1,90 @@
+columns:
+  - id
+  - industries
+  - department
+  - sub_department
+  - department_id
+  - jobrole
+  - description
+  - jobrole_category
+  - performance_expectation
+  - status
+  - related_jobrole
+  - required_skill_experience
+  - location
+  - salary_range
+  - company_information
+  - responsibilities
+  - benefits
+  - keyword_tags
+  - job_posting_date
+  - application_deadline
+  - contact_information
+  - internal_tracking
+  - education
+  - experience
+  - training
+  - sub_institute_id
+  - created_by
+  - updated_by
+  - deleted_by
+  - created_at
+  - updated_at
+  - deleted_at
+data_types:
+  id: int
+  industries: str
+  department: str
+  sub_department: str
+  department_id: int
+  jobrole: str
+  description: str
+  jobrole_category: str
+  performance_expectation: str
+  status: str
+  related_jobrole: str
+  required_skill_experience: str
+  location: str
+  salary_range: str
+  company_information: str
+  responsibilities: str
+  benefits: str
+  keyword_tags: str
+  job_posting_date: str
+  application_deadline: str
+  contact_information: str
+  internal_tracking: str
+  education: str
+  experience: str
+  training: str
+  sub_institute_id: int
+  created_by: str
+  updated_by: str
+  deleted_by: str
+  created_at: str
+  updated_at: str
+  deleted_at: str
+primary_key: id
+validation_rules:
+  id:
+    non_null: true
+    unique: true
+  industries:
+    allowed_values: []  # Add predefined list if available
+  department:
+    allowed_values: []  # Add predefined list if available
+  status:
+    allowed_values: []  # Add predefined list if available
+  salary_range:
+    min: 0
+    max: 1000000
+  experience:
+    min: 0
+  jobrole:
+    non_empty: true
+  description:
+    non_empty: true
+  job_posting_date:
+    format: YYYY-MM-DD
+  application_deadline:
+    format: YYYY-MM-DD
