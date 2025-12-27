@@ -48,3 +48,80 @@ This repository contains the folder structure and resources for Sprint 1 tasks, 
 5. Explore data in `notebooks/`.
 
 For detailed specs, see `docs/Technical Specifications.txt`.
+
+
+# data_ingestion.py — Dataset Loading
+## Purpose
+- Safely loads the cleaned dataset from disk and makes it available as a Pandas DataFrame.
+## What it does
+- Verifies that the dataset file exists
+- Loads the CSV into a DataFrame
+- Prints dataset shape for verification
+- Designed to be reusable across the project
+
+## Why it matters
+- This ensures consistent and reliable data loading across preprocessing, validation, and modeling steps.
+
+# text_and_categorical_preprocessing.py — ML Preprocessing
+## Purpose
+- Prepares the cleaned dataset for machine learning by transforming text and categorical features into ML-friendly formats.
+  ## What it does
+- Cleans text fields (lowercasing, removing punctuation)
+- Applies NLP preprocessing:
+
+tokenization
+
+stopword removal
+
+lemmatization
+
+- Creates both human-readable and ML-processed text columns
+- Encodes categorical columns using LabelEncoder
+- Stores encoders for future decoding if needed
+
+
+## Why it matters
+- Machine learning models cannot work directly with raw text or string categories.
+- This step converts human-readable data into structured numerical representations.
+
+# schema_validation.py — Data Validation
+## Purpose
+- Validates the dataset against a predefined schema to ensure structural consistency.
+## What it does
+- Loads expected schema from a JSON file
+
+## Verifies:
+- required columns
+- unexpected extra columns
+- data type correctness
+- primary key uniqueness
+
+Reports validation errors clearly
+
+
+## Why it matters
+- Even cleaned data can break pipelines if its structure changes.
+- Schema validation prevents silent failures in analysis and ML workflows.
+
+# categorical_staging.py — Categorical Standardization & Staging
+## Purpose
+Standardizes categorical values and stores them in a SQLite staging database.
+## What it does
+- Normalizes categorical text (strip spaces, lowercase)
+- Extracts categorical columns
+- Stores them in a SQLite staging table
+- Enables reuse and consistency of category values
+
+
+## Why it matters
+- Categorical inconsistencies (e.g., IT vs it) can create incorrect model behavior.
+- Staging provides a controlled layer between raw data and modeling.
+## Overall Pipeline Flow
+- Load cleaned dataset
+- Validate schema consistency
+- Preprocess text and encode categorical features
+- Standardize and stage categorical values
+- Dataset becomes ready for analysis and machine learning models
+
+
+
